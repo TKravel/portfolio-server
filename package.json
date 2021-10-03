@@ -1,0 +1,17 @@
+{
+  "name": "portfolio-server",
+  "version": "1.0.0",
+  "description": "Server to handle mailTo's from portfolio",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Kravel",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.13"
+  }
+}
