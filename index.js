@@ -21,6 +21,10 @@ const corsOptions = {
 	optionsSuccessStatus: 200,
 };
 
+app.options(
+	'/contact',
+	cors({ origin: 'https://loving-hawking-d87cb3.netlify.app' })
+);
 app.post('/contact', cors(corsOptions), function (req, res) {
 	const name = req.body.fullName;
 	const email = req.body.email;
