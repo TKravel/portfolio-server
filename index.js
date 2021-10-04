@@ -3,6 +3,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
+const cors = require('cors');
 let port = process.env.PORT;
 
 const app = express();
@@ -13,7 +14,11 @@ app.get('/', function (req, res) {
 	res.send('Hello World');
 });
 
-app.post('/contact', function (req, res) {
+const corsOptions = {
+	origin: 'https://loving-hawking-d87cb3.netlify.app',
+};
+
+app.post('/contact', cors(corsOptions), function (req, res) {
 	const name = req.body.fullName;
 	const email = req.body.email;
 	const message = req.body.message;
