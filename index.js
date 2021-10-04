@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
 	origin: 'https://loving-hawking-d87cb3.netlify.app',
+	allowedHeaders: 'content-type',
 };
 
 app.post('/contact', cors(corsOptions), function (req, res) {
@@ -73,7 +74,6 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 		to: process.env.FORWARD_EMAIL,
 		from: process.env.EMAIL,
 	});
-	res.statusCode(200);
 });
 
 // Check if running locally
