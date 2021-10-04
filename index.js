@@ -17,7 +17,9 @@ app.use(cors({ origin: 'https://loving-hawking-d87cb3.netlify.app' }));
 
 const corsOptions = {
 	origin: 'https://loving-hawking-d87cb3.netlify.app',
-	allowedHeader: 'Content-Type',
+	methods: 'POST',
+	allowedHeaders: 'Content-Type',
+	preflightContinue: true,
 	optionsSuccessStatus: 200,
 };
 
