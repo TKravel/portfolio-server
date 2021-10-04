@@ -16,7 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 const corsOptions = {
 	origin: 'https://loving-hawking-d87cb3.netlify.app',
-	allowedHeaders: 'content-type',
+	optionsSuccessStatus: 200,
 };
 
 app.post('/contact', cors(corsOptions), function (req, res) {
