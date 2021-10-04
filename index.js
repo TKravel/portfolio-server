@@ -10,12 +10,12 @@ const app = express();
 
 app.use(express.urlencoded({ extended: true }));
 
-app.get('/', function (req, res) {
-	res.send('Hello World');
-});
+// app.get('/', function (req, res) {
+// 	res.send('Hello World');
+// });
 
 const corsOptions = {
-	origin: 'https://loving-hawking-d87cb3.netlify.app/',
+	origin: 'https://loving-hawking-d87cb3.netlify.app',
 };
 
 app.post('/contact', cors(corsOptions), function (req, res) {
