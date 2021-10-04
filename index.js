@@ -15,7 +15,7 @@ app.get('/', function (req, res) {
 });
 
 const corsOptions = {
-	origin: 'https://loving-hawking-d87cb3.netlify.app',
+	origin: 'https://loving-hawking-d87cb3.netlify.app/',
 };
 
 app.post('/contact', cors(corsOptions), function (req, res) {
