@@ -9,6 +9,7 @@ let port = process.env.PORT;
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({ origin: 'https://loving-hawking-d87cb3.netlify.app' }));
 
 // app.get('/', function (req, res) {
 // 	res.send('Hello World');
