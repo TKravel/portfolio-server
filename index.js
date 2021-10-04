@@ -82,7 +82,7 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 		to: process.env.FORWARD_EMAIL,
 		from: process.env.EMAIL,
 	});
-	res.statusCode(200);
+	res.json({ status: '200' });
 });
 
 // Check if running locally
