@@ -3,6 +3,7 @@ const express = require('express');
 const nodemailer = require('nodemailer');
 const { google } = require('googleapis');
 const OAuth2 = google.auth.OAuth2;
+let port = process.env.PORT;
 
 const app = express();
 
@@ -32,6 +33,7 @@ app.post('/contact', function (req, res) {
 		const accessToken = await new Promise((resolve, reject) => {
 			oauth2Client.getAccessToken((err, token) => {
 				if (err) {
+					console.log(err);
 					reject();
 				}
 				resolve(token);
@@ -62,10 +64,18 @@ app.post('/contact', function (req, res) {
 	// Send email
 	sendEmail({
 		subject: 'New portfolio message!',
-		text: message,
+		text: 'From : ' + name + ' @ ' + email + '. Message: ' + message + '.',
 		to: process.env.FORWARD_EMAIL,
 		from: process.env.EMAIL,
 	});
+	res.statusCode(200);
 });
 
-app.listen(3000);
+// Check if running locally
+if (port == null || port == '') {
+	port = 8000;
+}
+
+app.listen(port, function () {
+	console.log('listening on port: ', port);
+});
