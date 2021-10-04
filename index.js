@@ -19,7 +19,7 @@ const corsOptions = {
 	origin: 'https://loving-hawking-d87cb3.netlify.app',
 	methods: 'POST',
 	allowedHeaders: 'Content-Type',
-	preflightContinue: true,
+
 	optionsSuccessStatus: 200,
 };
 
