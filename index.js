@@ -32,6 +32,8 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 	const email = req.body.email;
 	const message = req.body.message;
 
+	console.log('req: ', req.body);
+
 	// Get fresh token, create transporter
 	const createTransporter = async () => {
 		const oauth2Client = new OAuth2(
@@ -82,7 +84,7 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 		to: process.env.FORWARD_EMAIL,
 		from: process.env.EMAIL,
 	});
-	res.json({ status: '200', data: req.body });
+	res.json({ status: '200' });
 });
 
 // Check if running locally
