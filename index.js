@@ -9,25 +9,17 @@ let port = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-app.use(cors({ origin: 'https://loving-hawking-d87cb3.netlify.app' }));
-
-// app.get('/', function (req, res) {
-// 	res.send('Hello World');
-// });
+app.use(cors({ origin: `${process.env.ORIGIN_SITE}` }));
 
 const corsOptions = {
-	origin: 'https://loving-hawking-d87cb3.netlify.app',
+	origin: `${process.env.ORIGIN_SITE}`,
 	methods: 'POST',
 	allowedHeaders: 'Content-Type',
 
 	optionsSuccessStatus: 200,
 };
 
-app.options(
-	'/contact',
-	cors({ origin: 'https://loving-hawking-d87cb3.netlify.app' })
-);
+app.options('/contact', cors({ origin: `${process.env.ORIGIN_SITE}` }));
 app.post('/contact', cors(corsOptions), function (req, res) {
 	const name = req.body.fullName;
 	const email = req.body.email;
@@ -81,7 +73,14 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 	// Send email
 	sendEmail({
 		subject: 'New portfolio message!',
-		text: 'From : ' + name + ' @ ' + email + '. Message: ' + message + '.',
+		text:
+			'From : ' +
+			name +
+			'. Return address: ' +
+			email +
+			'. Message: ' +
+			message +
+			'.',
 		to: process.env.FORWARD_EMAIL,
 		from: process.env.EMAIL,
 	});
