@@ -87,6 +87,7 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 	res.json({ status: '200' });
 });
 
+app.options('/downloads', cors());
 app.get('/downloads', (req, res) => {
 	console.log('hit');
 	res.setHeader('Content-Type', 'text/pdf');
