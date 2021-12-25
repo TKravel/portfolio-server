@@ -9,17 +9,17 @@ let port = process.env.PORT;
 const app = express();
 
 app.use(express.json());
-app.use(cors({ origin: `${process.env.ORIGIN_SITE}` }));
+app.use(cors());
 
 const corsOptions = {
-	origin: `${process.env.ORIGIN_SITE}`,
-	methods: 'POST',
+	origin: [`${process.env.ORIGIN_SITE}`, '*'],
+	methods: ['POST', 'GET'],
 	allowedHeaders: 'Content-Type',
 
 	optionsSuccessStatus: 200,
 };
 
-app.options('/contact', cors({ origin: `${process.env.ORIGIN_SITE}` }));
+app.options('/contact', cors());
 app.post('/contact', cors(corsOptions), function (req, res) {
 	const name = req.body.fullName;
 	const email = req.body.email;
@@ -87,11 +87,21 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 	res.json({ status: '200' });
 });
 
+app.get('/downloads', (req, res) => {
+	console.log('hit');
+	res.setHeader('Content-Type', 'text/pdf');
+	res.download('./resources/Tim_Kravel_Resume.pdf', (err) => {
+		if (err) {
+			console.log(err);
+		}
+	});
+});
+
 // Check if running locally
 if (port == null || port == '') {
-	port = 8000;
+	port = 3000;
 }
 
-app.listen(port, function () {
+app.listen(port, () => {
 	console.log('listening on port: ', port);
 });
