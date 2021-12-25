@@ -90,7 +90,7 @@ app.post('/contact', cors(corsOptions), function (req, res) {
 app.options('/downloads', cors());
 app.get('/downloads', (req, res) => {
 	console.log('hit');
-	res.setHeader('Content-Type', 'text/pdf');
+	res.setHeader('Content-Type', 'application/pdf');
 	res.download('./resources/Tim_Kravel_Resume.pdf', (err) => {
 		if (err) {
 			console.log(err);
